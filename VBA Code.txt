@@ -1,0 +1,18 @@
+Option Explicit
+
+Sub Zeitenrechner()
+    Dim Count As Integer
+    Count = Range("B1:B31").Rows.Count
+    
+    Dim i As Integer
+    
+    For i = 1 To 31
+        Dim Cell_B As String
+        Cell_B = "B" & CStr(i)
+        If Not IsEmpty(Range(Cell_B).Value) Then
+            Dim Ueberstunden As Double
+            Ueberstunden = ((Range("C" & CStr(i)).Value - Range(Cell_B).Value) + 1#) * 24# - 0.5 - 8#
+            Range("D" & CStr(i)).Value = Ueberstunden
+        End If
+    Next i
+End Sub
